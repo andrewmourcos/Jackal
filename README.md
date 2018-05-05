@@ -1,16 +1,13 @@
 # Jackal
 
-What to do rn:
-- setup web application framework so that python (CV) is usable
-
 goal:
-- Computer vision web service?
-- 
+- App that turns piano video into notes
 
 backend:
 - python + opencv
 
 frontend:
-- website design (HTML, CSS)
+- website (HTML, CSS)
+- find a way to incorporate Python+OpenCV into a site
 
 
