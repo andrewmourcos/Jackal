@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+import os
+import time
 
 video = cv2.VideoCapture(1)
 notes=[]
@@ -35,7 +37,7 @@ while(True):
 
 	key.sort(key=lambda x: x[0])
 	num = 0
-	letters = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c"]
+	letters = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c", "d", "e", "f", "g","a", "b", "c", "d", "e", "f", "g"]
 
 	# labels
 	label = []
@@ -50,16 +52,26 @@ while(True):
 		diff = abs(l[1] - lastvalue)
 		if diff > 130:
 			notes.append(l[0])
-			cv2.putText(frame, l[0],(450,50), font, 4,(255,0,0),2,cv2.LINE_AA)
+			cv2.putText(frame, l[0],(450,100), font, 4,(255,0,0),5,cv2.LINE_AA)
 		lastvalue = l[1]
 
-	cv2.imshow("yeet", edges)
-	cv2.imshow("fam", dilation)
 	cv2.imshow("dude", frame)
-
 
 	if cv2.waitKey(30) & 0xFF == ord('q'):
 		break
-print(notes)
+
+notes = notes[0::8]
+file = open('lily.ly', 'w')
+
+file.write('\\version "2.18.2" \n \language "english" \n \\relative{\n \clef "treble_8"')
+
+for i in notes:
+	file.write(i)
+	file.write("\n")
+file.write("}")
+file.close()
+os.system("lilypond lily.ly")
+os.system("open lily.pdf")
+
 cap.release()
 cv2.destroyAllWindows()
