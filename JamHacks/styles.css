@@ -1,0 +1,41 @@
+#banner{
+    margin-top: 52px;
+    height:600px;
+    text-align: center;
+    vertical-align: middle;
+    background: url("pic1.jpg");
+}
+
+#textbox{
+    vertical-align: middle;
+    padding:150px;
+    margin-left:20%;
+    margin-right: 20%;
+}
+
+#pic{
+    margin-top: 50px;
+    height: 325px;
+    width:100%;
+}
+
+#text{
+    width:90%;
+}
+
+#head h2{
+    display:inline-block;
+    float:left;
+    margin-left:35%;
+    padding-top:30px;
+}
+
+hr {
+  height: 10px;
+  border: 2px;
+  box-shadow: 0 10px 10px -10px #8c8c8c inset;
+}
+
+#icon{
+   padding-top: 56px; 
+}
