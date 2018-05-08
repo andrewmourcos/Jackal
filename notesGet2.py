@@ -3,10 +3,12 @@ import numpy as np
 import os
 import time
 
-video = cv2.VideoCapture(1)
+video = cv2.VideoCapture("Media/piano5.mov")
 notes=[]
 while(True):
 	ret, frame = video.read()
+	if not ret:
+		break
 	frame = frame[80:220, 0:1000]
 
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -28,8 +30,8 @@ while(True):
 		x,y,w,h = cv2.boundingRect(cnt)
 		area = cv2.contourArea(cnt)
 		digit=edges[y:y+h,x:x+w]
-		if (area > 3000 and area < 14000):
-		# if(area > 1000 and area < 5000):
+		# if (area > 3000 and area < 14000):
+		if(area > 1000 and area < 5000):
 			cv2.rectangle(frame,(x,y),(x+w,y+h),(200,0,0),2)
 			key.append([x,y,w,h])
 		else:
@@ -37,7 +39,7 @@ while(True):
 
 	key.sort(key=lambda x: x[0])
 	num = 0
-	letters = ["a", "b", "c", "d", "e", "f", "g", "a", "b", "c", "d", "e", "f", "g","a", "b", "c", "d", "e", "f", "g"]
+	letters = ["a", "b", "c", "d", "e", "f", "g", "a'", "b'", "c'", "d'", "e'", "f'", "g'","a'", "b'", "c'", "d'", "e'", "f'", "g'"]
 
 	# labels
 	label = []
@@ -56,6 +58,8 @@ while(True):
 		lastvalue = l[1]
 
 	cv2.imshow("dude", frame)
+
+
 
 	if cv2.waitKey(30) & 0xFF == ord('q'):
 		break
