@@ -39,7 +39,7 @@ while(True):
 
 	key.sort(key=lambda x: x[0])
 	num = 0
-	letters = ["a", "b", "c", "d", "e", "f", "g", "a'", "b'", "c'", "d'", "e'", "f'", "g'","a'", "b'", "c'", "d'", "e'", "f'", "g'"]
+	letters = ["a", "b", "c", "d", "e", "f", "g", "a'", "b'", "c'", "d'", "e'", "f'", "g'"]
 
 	# labels
 	label = []
@@ -52,7 +52,7 @@ while(True):
 	lastvalue = 0
 	for l in label:
 		diff = abs(l[1] - lastvalue)
-		if diff > 130:
+		if diff > 100:
 			notes.append(l[0])
 			cv2.putText(frame, l[0],(450,100), font, 4,(255,0,0),5,cv2.LINE_AA)
 		lastvalue = l[1]
@@ -61,10 +61,10 @@ while(True):
 
 
 
-	if cv2.waitKey(30) & 0xFF == ord('q'):
+	if cv2.waitKey(15) & 0xFF == ord('q'):
 		break
-
-notes = notes[0::8]
+print(notes)
+notes = notes[0::18]
 file = open('lily.ly', 'w')
 
 file.write('\\version "2.18.2" \n \language "english" \n \\relative{\n \clef "treble_8"')
@@ -77,5 +77,5 @@ file.close()
 os.system("lilypond lily.ly")
 os.system("open lily.pdf")
 
-cap.release()
+video.release()
 cv2.destroyAllWindows()
